@@ -1,0 +1,72 @@
+< !DOCTYPE html > <html > <head > <meta charset = "utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" /><title> iOS and Js </title>
+    <style type="text/css ">
+        * {
+            font-size: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div style="margin-top: 100px ">
+        <h1 style="color: red;
+            ">JS 交互</h1><br/>
+        <div><input type="button" value="notCallBackFunction" onclick="notCallBackFunction()"></div>
+        <br/>
+        <div><input type="button"  value="callBackFunction" onclick="callBackFunction()"></div>
+        <br/>
+        <div><input type="button" value="cleanAllCallBacks" onclick="cleanAllCallBacks()"></div>
+        <br/>
+        <div><input type="button" value="callJsConfirmAlert" onclick="callJsConfirm()"></div><br/>
+    </div>
+    <br/>
+    <div>
+        <div><input type="button" value="callJsConfirmAlert" onclick="callJsInput()"></div><br/>
+    </div>
+    
+    <br/>
+    <div id="SwiftDiv">
+        <span id="jsParamFuncSpan" style="color: red;
+            font-size: 50px;
+            "></span>
+    </div>
+    <div id="one" style="color: red;font-size: 50px;">
+        
+    </div>
+    <script src="JSEventHandler.js"></script>
+    <script type="text/javascript">
+        function notCallBackFunction() {
+            var params = Array('firstParam','secondParam');
+            JSEventHandler.callNativeFunction(arguments.callee.toString(),params,null);
+        }
+    
+    function callBackFunction(){
+        var params = Array('firstParam','secondParam');
+        JSEventHandler.callNativeFunction(arguments.callee.toString(),params,function(data){document.getElementById('jsParamFuncSpan').innerHTML
+                                          = data});
+    }
+    
+    function callJsConfirm() {
+        if (confirm('confirm', 'Objective-C call js to show confirm')) {
+            document.getElementById('jsParamFuncSpan').innerHTML
+            = 'true';
+        } else {
+            document.getElementById('jsParamFuncSpan').innerHTML
+            = 'false';
+        }
+    }
+    
+    function callJsInput() {
+        var response = prompt('Hello', '请输入你的名字:');
+        document.getElementById('jsParamFuncSpan').innerHTML = response;
+        alert (response);
+        
+    }
+    
+    function cleanAllCallBacks(){
+        JSEventHandler.removeAllCallBacks();
+    }
+    </script>
+</body>
+</html>
+"
